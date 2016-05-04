@@ -1,6 +1,6 @@
 ---
 published: true
-title: My first thoughts about writing on my tech hobbies
+title: My first page will be about the mardown language
 layout: post
 tags: [intro]
 ---
