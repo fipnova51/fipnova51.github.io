@@ -11,3 +11,6 @@ markdown: kramdown
 url: http://fipnova51.github.io
 title: My technical hobbies I've been working on
 paginate: 10
+
+kramdown:
+    input: GFM
