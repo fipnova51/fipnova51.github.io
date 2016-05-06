@@ -6,8 +6,8 @@ tags: [dtrace]
 categories: [system]
 ---
 *Dtrace is a tool developped by SUN to trace any function call, from the application to the system and is very usefull to debug an application. It's working on Solaris Mac OSx and FreeBSD*
-<br>
-<br>
+
+<!--excerpt-->
 
 ## D usage
 
