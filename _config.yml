@@ -4,7 +4,7 @@ name: fipnova51
 # Short bio or description (displayed in the header)
 description: First step with tinyPress / Jekyll and gitHub
 
-excerpt_separator: ""
+excerpt_separator: "\n\n"
 pygments: true
 markdown: redcarpet
 markdown_ext:  markdown,mkdown,mkdn,mkd,md
