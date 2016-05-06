@@ -7,7 +7,7 @@ description: First step with tinyPress / Jekyll and gitHub
 excerpt_separator: "\n\n"
 highlighter: rouge
 #pygments: true
-#markdown: kramdown
+markdown: kramdown
 
 url: http://fipnova51.github.io
 title: My technical hobbies I've been working on
