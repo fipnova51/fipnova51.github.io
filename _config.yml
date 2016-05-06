@@ -2,15 +2,14 @@
 name: thoughts about my computer hobbies
 
 # Short bio or description (displayed in the header)
-title: thoughts about my computer hobbies
+title: Differents questions that keep my head looping on any computer questions
 description: I'm writting anything about my computer hobbies that gave me a smile after finding a solution
+url: http://fipnova51.github.io
+paginate: 10
 
 excerpt_separator: "<!--excerpt-->"
 highlighter: rouge
 #pygments: true
 markdown: kramdown
 
-url: http://fipnova51.github.io
-title: My technical hobbies I've been working on
-paginate: 10
 
