@@ -1,5 +1,6 @@
 excerpt_separator: ""
-pygments: true
+highlighter: rouge
+#pygments: true
 markdown: kramdown
 url: http://fipnova51.github.io
 title: My technical hobbies I've been working on
