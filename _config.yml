@@ -1,4 +1,10 @@
-excerpt_separator: ""
+# Name of your site (displayed in the header)
+name: fipnova51
+
+# Short bio or description (displayed in the header)
+description: First step with tinyPress / Jekyll and gitHub
+
+excerpt_separator: <!–break–>
 highlighter: rouge
 #pygments: true
 markdown: kramdown
