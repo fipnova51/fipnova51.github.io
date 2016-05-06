@@ -5,7 +5,7 @@ name: fipnova51
 description: First step with tinyPress / Jekyll and gitHub
 
 excerpt_separator: "\n\n"
-highlighter: rouge
+highlighter: rouge 
 #pygments: true
 markdown: kramdown
 
