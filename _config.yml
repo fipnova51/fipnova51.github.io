@@ -4,10 +4,12 @@ name: fipnova51
 # Short bio or description (displayed in the header)
 description: First step with tinyPress / Jekyll and gitHub
 
-excerpt_separator: "\n\n"
-highlighter: rouge
-#pygments: true
-markdown: kramdown
+excerpt_separator: ""
+pygments: true
+markdown: redcarpet
+markdown_ext:  markdown,mkdown,mkdn,mkd,md
+redcarpet:
+  extensions: ["tables", "autolink", "strikethrough", "space_after_headers", "with_toc_data", "fenced_code_blocks"]
 url: http://fipnova51.github.io
 title: My technical hobbies I've been working on
 paginate: 10
