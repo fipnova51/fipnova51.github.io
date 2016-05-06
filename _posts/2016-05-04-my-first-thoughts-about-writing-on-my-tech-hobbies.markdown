@@ -3,10 +3,10 @@ published: true
 title: This is my first blog page and my first step to github
 layout: post
 tags: [intro]
-excerpt_separator: "\n\n"
 ---
 This is my first blog about writing about anything about the questions faced in my daily work and hobbies
-   
+
+<!--excerpt-->
    
 **but first thing, first let's see the markdown language**
 
