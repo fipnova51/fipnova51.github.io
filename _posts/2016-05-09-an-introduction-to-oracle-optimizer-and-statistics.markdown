@@ -25,7 +25,7 @@ you can use the query below to get information about statistics (whether a colum
 <span style='color:#800000; font-weight:bold; '>select</span> <span style='color:#808030; '>*</span> <span style='color:#800000; font-weight:bold; '>from</span> USER_TAB_COL_STATISTICS <span style='color:#800000; font-weight:bold; '>where</span> TABLE_NAME<span style='color:#808030; '>=</span><span style='color:#0000e6; '>'T'</span><span style='color:#808030; '>;</span> <span style='color:#696969; '>-- USER_TAB_COL_STATISTICS contains column statistics and histogram information extracted from "USER_TAB_COLUMNS" (check table definition for additional field to display)</span>
 <span style='color:#800000; font-weight:bold; '>select</span> INDEX_NAME<span style='color:#808030; '>,</span>STATUS<span style='color:#808030; '>,</span> LAST_ANALYZED<span style='color:#808030; '>,</span> CLUSTERING_FACTOR<span style='color:#808030; '>,</span> NUM_ROWS <span style='color:#800000; font-weight:bold; '>from</span> USER_INDEXES <span style='color:#800000; font-weight:bold; '>where</span> INDEX_NAME <span style='color:#800000; font-weight:bold; '>like</span> <span style='color:#0000e6; '>'ACT_BAT_%'</span><span style='color:#808030; '>;</span> <span style='color:#696969; '>-- check if index statistics are up-to-date</span>
 </pre>
-<br>
+<br/>
 The statistics must be present and up-to-date.
 
 * If USER_TAB_STATISTCS.STALE_STATS is empty it means the table has no statistics, you must gather them
@@ -43,13 +43,13 @@ dbms_stats<span style='color:#808030; '>.</span>gather_table_stats<span style='c
 <span style='color:#696969; '>-- for an index</span>
 dbms_stats<span style='color:#808030; '>.</span>gather_index_stats<span style='color:#808030; '>(</span>ownname <span style='color:#808030; '>=</span><span style='color:#808030; '>></span><span style='color:#0000e6; '>'&lt;SCHEMA_NAME>'</span><span style='color:#808030; '>,</span> indname <span style='color:#808030; '>=</span><span style='color:#808030; '>></span> <span style='color:#0000e6; '>'&lt;INDEX_NAME>'</span><span style='color:#808030; '>)</span>
 </pre>
-<br>
+<br/>
 By default, statistics are generated per column, it's sometime interesting to generate some statistics on a **group of columns**, you can use the command below
 
 <pre style='color:#000000;background:#ffffff;'><span style='color:#800000; font-weight:bold; '>select</span> dbms_stats<span style='color:#808030; '>.</span>create_extended_stats<span style='color:#808030; '>(</span><span style='color:#0000e6; '>'&lt;SCHEMA_NAME>'</span><span style='color:#808030; '>,</span><span style='color:#0000e6; '>'&lt;TABLE_NAME>'</span><span style='color:#808030; '>,</span><span style='color:#0000e6; '>'(&lt;LIST_OF_COLUMNS>)'</span><span style='color:#808030; '>)</span> <span style='color:#800000; font-weight:bold; '>from</span> dual<span style='color:#808030; '>;</span>
 <span style='color:#800000; font-weight:bold; '>exec</span> dbms_stats<span style='color:#808030; '>.</span>gather_table_stats<span style='color:#808030; '>(</span><span style='color:#0000e6; '>'&lt;SCHEMA_NAME>'</span><span style='color:#808030; '>,</span><span style='color:#0000e6; '>'&lt;TABLE_NAME>'</span><span style='color:#808030; '>)</span>
 </pre>
-<br>
+<br/>
 This will generate a new entry in USER_TAB_COL_STATISTICS with COLUMN_NAME value a bit random
 
 ![my helpfull post]({{ site.url }}/assets/pictures/stats_grouped_cols.png)
@@ -57,7 +57,7 @@ This will generate a new entry in USER_TAB_COL_STATISTICS with COLUMN_NAME value
 You can retrieve this 'pseudo' column definition in table USER_STAT_EXTENSION
 
 ![my helpfull post]({{ site.url }}/assets/pictures/grouped_cols_definition.png)
-<br>
+<br/>
 ## Few recommendations about gathering statistics
 
 Use default parameter for *ESTIMATE_PERCEN* and *METHOD_OPT*
@@ -76,7 +76,7 @@ To retrieve the valued that will be used, execute
 
 <pre style='color:#000000;background:#ffffff;'><span style='color:#800000; font-weight:bold; '>select</span> dbms_stats<span style='color:#808030; '>.</span>get_prefs<span style='color:#808030; '>(</span><span style='color:#0000e6; '>'&lt;PARAMETER_NAME>'</span><span style='color:#808030; '>,</span><span style='color:#0000e6; '>'SCHEMA_NAME'</span><span style='color:#808030; '>,</span><span style='color:#0000e6; '>'TABLE_NAME'</span><span style='color:#808030; '>)</span> <span style='color:#800000; font-weight:bold; '>from</span> dual<span style='color:#808030; '>;</span>
 </pre>
-<br>
+<br/>
 
 ### Gathering statistics consideration
 
@@ -87,7 +87,7 @@ Note also that Oracle automatically gather statitistics during Oracle maintenanc
 <span style='color:#800000; font-weight:bold; '>END</span><span style='color:#808030; '>;</span>
 <span style='color:#808030; '>/</span>
 </pre>
-<br>
+<br/>
 
 Concurrent statistics gathering *DBMS_STATS.GATHER_DATABASE_STATS, DBMS_STATS.GATHER_SCHEMA_STATS or DBMS_STATS.GATHER_DICTIONARY_STATS* allows gathering statistics on multiple tables. This is controlled by the global parameter *CONCURRENT* (default FALSE) and *JOB_QUEUE_PROCESSES* initialization parameter (number of individual job that can be executed at the same time, parameter to be changed at system level with command *ALTER SYSTEM*... or in init.ora file).
 
@@ -96,7 +96,7 @@ DBMS_STATS<span style='color:#808030; '>.</span>SET_GLOBAL_PREFS<span style='col
 <span style='color:#800000; font-weight:bold; '>END</span><span style='color:#808030; '>;</span>
 <span style='color:#808030; '>/</span>
 </pre>
-<br>
+<br/>
 
 It's then also possible to parallelize the execution of a single job with DEGREE parameter
 
@@ -111,7 +111,7 @@ It's very hard to say that an execution plan is better than another (is using an
 <span style='color:#800000; font-weight:bold; '>from</span> t 
 <span style='color:#800000; font-weight:bold; '>where</span> x <span style='color:#808030; '>=</span> <span style='color:#008c00; '>5</span>
 </pre>
-<br>
+<br/>
 
 There are several ways to get the execution plan depending on the context
 
@@ -128,7 +128,7 @@ Simple form is to give a representative expression in the WHERE clause for the q
        <span style='color:#800000; font-weight:bold; '>table</span><span style='color:#808030; '>(</span>dbms_xplan<span style='color:#808030; '>.</span>display_cursor<span style='color:#808030; '>(</span><span style='color:#800000; font-weight:bold; '>s</span><span style='color:#808030; '>.</span>sql_id<span style='color:#808030; '>,</span> <span style='color:#800000; font-weight:bold; '>s</span><span style='color:#808030; '>.</span>child_number<span style='color:#808030; '>,</span><span style='color:#0000e6; '>'[ALL | ALLSTATS LAST]'</span><span style='color:#808030; '>)</span><span style='color:#808030; '>)</span> t
 <span style='color:#800000; font-weight:bold; '>where</span>  <span style='color:#800000; font-weight:bold; '>s</span><span style='color:#808030; '>.</span>sql_text <span style='color:#800000; font-weight:bold; '>like</span> <span style='color:#0000e6; '>'select * from ACT_BAT_DBF'</span><span style='color:#808030; '>;</span>
 </pre>
-<br>
+<br/>
 
 you can also use an alternate solution which is to get the *sql_id* first then pass it to the first query by changing the where clause (not sure of the interest)
 
@@ -139,7 +139,7 @@ you can also use an alternate solution which is to get the *sql_id* first then p
        <span style='color:#800000; font-weight:bold; '>table</span><span style='color:#808030; '>(</span>dbms_xplan<span style='color:#808030; '>.</span>display_cursor<span style='color:#808030; '>(</span><span style='color:#800000; font-weight:bold; '>s</span><span style='color:#808030; '>.</span>sql_id<span style='color:#808030; '>,</span> <span style='color:#800000; font-weight:bold; '>s</span><span style='color:#808030; '>.</span>child_number<span style='color:#808030; '>,</span><span style='color:#0000e6; '>'[ALL | ALLSTATS LAST]'</span><span style='color:#808030; '>)</span><span style='color:#808030; '>)</span> t
 <span style='color:#800000; font-weight:bold; '>where</span>  <span style='color:#800000; font-weight:bold; '>s</span><span style='color:#808030; '>.</span>sql_id <span style='color:#808030; '>=</span> <span style='color:#0000e6; '>'4vj1jmvjuwxxh'</span><span style='color:#808030; '>;</span>
 </pre>
-<br>
+<br/>
 
 ## How to get the execution plan of a running SQL ?
 
@@ -153,7 +153,7 @@ Check previously or execute your SQL statement  then execute
 <span style='color:#800000; font-weight:bold; '>grant</span> <span style='color:#800000; font-weight:bold; '>SELECT</span> <span style='color:#800000; font-weight:bold; '>on</span> V_$SQL_PLAN <span style='color:#800000; font-weight:bold; '>to</span> <span style='color:#808030; '>&lt;</span>USERNAME<span style='color:#808030; '>></span><span style='color:#808030; '>;</span>
 <span style='color:#800000; font-weight:bold; '>grant</span> <span style='color:#800000; font-weight:bold; '>SELECT</span> <span style='color:#800000; font-weight:bold; '>on</span> V_$<span style='color:#800000; font-weight:bold; '>SQL</span> <span style='color:#800000; font-weight:bold; '>to</span> <span style='color:#808030; '>&lt;</span>USERNAME<span style='color:#808030; '>></span><span style='color:#808030; '>;</span>
 </pre>
-<br>
+<br/>
 
 ## What would be the plan for a SQL statement ?
 <font color='red'>The PLAN returned in this section is the 'possible' execution plan but might differ from the real used plan. The later can be retrieved with point 1 and 2</font>
@@ -166,13 +166,13 @@ the plan is stored in a table (default table: PLAN_TABLE) that must be created o
 
 <pre style='color:#000000;background:#ffffff;'><span style='color:#800000; font-weight:bold; '>SQL</span><span style='color:#808030; '>></span> <span style='color:#797997; '>@</span><span style='color:#808030; '>/</span>opt<span style='color:#808030; '>/</span>oracle<span style='color:#808030; '>/</span><span style='color:#008c00; '>11204</span><span style='color:#808030; '>/</span>rdbms<span style='color:#808030; '>/</span><span style='color:#800000; font-weight:bold; '>admin</span><span style='color:#808030; '>/</span>utlxplan<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>sql</span>
 </pre>
-<br>
+<br/>
 
 It's also possible to store the information in another table, in this case you just need to rename the table created by the script *utlxplan.sql*.
 
 <pre style='color:#000000;background:#ffffff;'><span style='color:#800000; font-weight:bold; '>RENAME</span> PLAN_TABLE <span style='color:#800000; font-weight:bold; '>TO</span> my_plan_table<span style='color:#808030; '>;</span>
 </pre>
-<br>
+<br/>
 
 ### Running EXPLAIN PLAN
 
@@ -181,9 +181,10 @@ It's also possible to store the information in another table, in this case you j
   <span style='color:#808030; '>[</span><span style='color:#800000; font-weight:bold; '>INTO</span> <span style='color:#808030; '>&lt;</span>your PLAN_output_table<span style='color:#808030; '>></span><span style='color:#808030; '>]</span> <span style='color:#800000; font-weight:bold; '>FOR</span>
 <span style='color:#808030; '>&lt;</span>YOUR <span style='color:#800000; font-weight:bold; '>SQL</span> <span style='color:#800000; font-weight:bold; '>QUERY</span><span style='color:#808030; '>></span>
 </pre>
+<br/>
 
 ### Displaying the PLAN_TABLE output
 
 <pre style='color:#000000;background:#ffffff;'><span style='color:#800000; font-weight:bold; '>SELECT</span> PLAN_TABLE_OUTPUT <span style='color:#800000; font-weight:bold; '>FROM</span> <span style='color:#800000; font-weight:bold; '>TABLE</span><span style='color:#808030; '>(</span>DBMS_XPLAN<span style='color:#808030; '>.</span>DISPLAY<span style='color:#808030; '>(</span><span style='color:#0000e6; '>'&lt;PLAN_TABLE_NAME>'</span><span style='color:#808030; '>,</span> <span style='color:#0000e6; '>'&lt;STATEMENT_ID>'</span><span style='color:#808030; '>,</span><span style='color:#0000e6; '>'[ALL | ALLSTATS LAST]'</span><span style='color:#808030; '>)</span><span style='color:#808030; '>)</span><span style='color:#808030; '>;</span>
 </pre>
-<br>
+<br/>
