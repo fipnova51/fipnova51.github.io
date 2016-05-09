@@ -58,3 +58,5 @@ This will generate a new entry in USER_TAB_COL_STATISTICS with COLUMN_NAME value
 <td>1</td><td>2</td><td>3</td><td>4</td>
 </tr>
 </table>
+
+({{ site.url }}/assets/pictures/stats_grouped_cols.png)
