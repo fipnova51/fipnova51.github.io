@@ -181,7 +181,6 @@ It's also possible to store the information in another table, in this case you j
   <span style='color:#808030; '>[</span><span style='color:#800000; font-weight:bold; '>INTO</span> <span style='color:#808030; '>&lt;</span>your PLAN_output_table<span style='color:#808030; '>></span><span style='color:#808030; '>]</span> <span style='color:#800000; font-weight:bold; '>FOR</span>
 <span style='color:#808030; '>&lt;</span>YOUR <span style='color:#800000; font-weight:bold; '>SQL</span> <span style='color:#800000; font-weight:bold; '>QUERY</span><span style='color:#808030; '>></span>
 </pre>
-<br>
 
 ### Displaying the PLAN_TABLE output
 
