@@ -50,4 +50,11 @@ By default, statistics are generated per column, it's sometime interesting to ge
 <br>
 This will generate a new entry in USER_TAB_COL_STATISTICS with COLUMN_NAME value a bit random
 
-|   COLUMN_NAME   |   NUM_DISTINCT   |   NUM_NULLS   |   HISTOGRAM   |
+<table border="1" style="width:100%">
+<tr>
+<th>COLUMN_NAME</th><th>NUM_DISTINCT</th><th>NUM_NULLS</th><th>HISTOGRAM</th>
+</tr>
+<tr>
+<td>1</td><td>2</td><td>3</td><td>4</td>
+</tr>
+</table>
