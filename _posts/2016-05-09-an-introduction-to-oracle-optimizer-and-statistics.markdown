@@ -50,4 +50,4 @@ By default, statistics are generated per column, it's sometime interesting to ge
 <br>
 This will generate a new entry in USER_TAB_COL_STATISTICS with COLUMN_NAME value a bit random
 
-!({{ site.url }}/assets/pictures/stats_grouped_cols.png)
+![My helpful screenshot]({{ site.url }}/assets/pictures/stats_grouped_cols.png)
