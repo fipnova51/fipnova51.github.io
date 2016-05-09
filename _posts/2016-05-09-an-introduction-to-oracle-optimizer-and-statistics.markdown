@@ -59,4 +59,4 @@ This will generate a new entry in USER_TAB_COL_STATISTICS with COLUMN_NAME value
 </tr>
 </table>
 
-({{ site.url }}/assets/pictures/stats_grouped_cols.png)
+![My helpful screenshot]({{ site.url }}/assets/pictures/stats_grouped_cols.png)
