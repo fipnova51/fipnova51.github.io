@@ -9,6 +9,9 @@ categories: [database]
 
 <!--excerpt-->
 
+*Usefull links*
+* [Understanding optimizer statistics](http://www.oracle.com/technetwork/database/bi-datawarehousing/twp-statistics-concepts-12c-1963871.pdf)
+
 # Let's start wit few words about statistics
 
 ## How to generate statistics on tables and index
