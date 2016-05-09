@@ -50,8 +50,8 @@ By default, statistics are generated per column, it's sometime interesting to ge
 <br>
 This will generate a new entry in USER_TAB_COL_STATISTICS with COLUMN_NAME value a bit random
 
-!({{ site.url }}/assets/pictures/stats_grouped_cols.png)
+![my helpfull post]({{ site.url }}/assets/pictures/stats_grouped_cols.png)
 
 You can retrieve this 'pseudo' column definition in table USER_STAT_EXTENSION
 
-!({{ site.url }}/assets/pictures/grouped_cols_definition.png)
+![my helpfull post]({{ site.url }}/assets/pictures/grouped_cols_definition.png)
