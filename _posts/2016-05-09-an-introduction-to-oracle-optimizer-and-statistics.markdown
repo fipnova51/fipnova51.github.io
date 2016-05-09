@@ -57,7 +57,7 @@ This will generate a new entry in USER_TAB_COL_STATISTICS with COLUMN_NAME value
 You can retrieve this 'pseudo' column definition in table USER_STAT_EXTENSION
 
 ![my helpfull post]({{ site.url }}/assets/pictures/grouped_cols_definition.png)
-
+<br>
 ## Few recommendations about gathering statistics
 
 Use default parameter for *ESTIMATE_PERCEN* and *METHOD_OPT*
