@@ -12,7 +12,11 @@ categories: [database]
 *Usefull links*
 
 * [Understanding optimizer statistics](http://www.oracle.com/technetwork/database/bi-datawarehousing/twp-statistics-concepts-12c-1963871.pdf)
-
+* [Oracle 11G database performance tuning guide - using Explain Plan](http://docs.oracle.com/cd/B28359_01/server.111/b28274/ex_plan.htm#i17492)
+* [How to check the good behaviour of the optimizer by comparing estimated rows vs actual rows](http://www.oracle.com/technetwork/issue-archive/2014/14-nov/o64asktom-2298498.html)
+ 
+<br/>
+ 
 # Let's start wit few words about statistics
  
 <br/>
