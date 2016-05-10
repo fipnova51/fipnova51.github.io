@@ -19,6 +19,18 @@ categories: [database]
 
 `set statistics time, io, plancost on`
 
+### enable option tracing
+
+~~~
+set option show_lio_costing on
+set option show_missing_stats on
+set show_sqltext on
+~~~
+
+### this option is to be enable at a next stage of analysis
+
+`set option show long`
+
 ### Do not display result
 
 If your query returns a lot of rows, just don't display them
