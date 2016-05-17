@@ -1,11 +1,11 @@
 ---
 published: true
-title: How to calculate the amount of memory on Solaris zone
+title: How to calculate the total  memory on Solaris physical server?
 layout: post
 tags: [solaris, zone, memory]
 categories: [system]
 ---
-*prtconf is not working on a non-global zone. How to find out the allocated memory?*
+*prtconf will return the allocated memory for a zone, what if you want to know the total amount of memory on the physical server?*
 
 <!--excerpt-->
 
