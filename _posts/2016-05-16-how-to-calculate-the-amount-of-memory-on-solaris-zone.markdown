@@ -11,12 +11,12 @@ categories: [system]
 
 Use the command below
 
-    echo $(( $( kstat :::physmem | tail -2 | head -1 | awk '{print $NF}') * $(pagesize) / (1024  * 1024) ))
+     kstat -n system_pages -p -s physmem | nawk -v pagesize=$(pagesize) '{print $2*pagesize/1024/1024 "MB"}'
 
 Example:
 
 ~~~
 mx599zn autoengine /tmp/
-bash$ echo $(( $( kstat :::physmem | tail -2 | head -1 | awk '{print $NF}') * $(pagesize) / (1024  * 1024) ))
-514296
+bash$ kstat -n system_pages -p -s physmem | nawk -v pagesize=$(pagesize) '{print $2*pagesize/1024/1024 "MB"}'
+514296MB
 ~~~
