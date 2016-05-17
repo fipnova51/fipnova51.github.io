@@ -27,3 +27,11 @@ So now we know how it works, let's see the point to consider to find the right b
 1. increase `i/o batch size` but it will stress the I/O subsystem and potentially generate some waits on the MASS bit
 1. Increase `number of checkpoint processes` if there are a lot of databases in the system but as several checkpoint could be executed in parallel make sure to not exceed the number of `disk I/O structures`
 
+OK. So now how can know if the checkpoint is behaving correctly?
+
+To do so, we need to look at sp_sysmon output.
+
+1. get the sample interval (x)
+2. get the number of DB on the dataserver (y)
+3. knowing that checkpoint is triggered every minute, during the sample we can have a maximum of **x time y** checkpoints. This must be compared with the `# of normal checkpoints` in sp_sysmon output and make sure we're below
+4. then look at `Avg time per normal chkpt` and mulitply it by `y` and make sure the value is less than a minute.
