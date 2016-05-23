@@ -1,6 +1,6 @@
 ---
 published: true
-title: First step with git
+title: First step with git -- install and basic commands
 layout: post
 tags: [git]
 categories: [dev]
@@ -39,11 +39,23 @@ Simon Souv
 ### Getting help
 
 there are 3 ways to get some information about a command
+
 ~~~
 git help <command>
 get <command> --help
 man git <command>
 ~~~
 
+## Basic commands
+
+### repository initialization
+
+#### initialize a repository with an existing directory
+
+~~~
+cd <your directory>
+git init
+~~~
+your directory will contain a sub-directory called `.git` containing the git repository skeleton. Let's add afew files to initiate an initial commit
 
 
