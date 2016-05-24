@@ -36,4 +36,5 @@ Example of SQL:
 <br/>
 
 **Below is a list of configuration to consider for tuning**
+
 ![my helpfull post]({{ site.url }}/assets/pictures/checkpoint_housekeeper_tuning_starting_points.png)
