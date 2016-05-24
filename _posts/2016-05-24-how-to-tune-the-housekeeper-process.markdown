@@ -5,7 +5,7 @@ layout: post
 tags: [sybase, housekeeper]
 categories: [database]
 ---
-*This note explains the housekkeper and how to tune it*
+*This note explains the housekeeper wash and how to tune it*
 
 <!--excerpt-->
 
