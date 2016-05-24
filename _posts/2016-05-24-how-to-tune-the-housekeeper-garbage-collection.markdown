@@ -34,3 +34,6 @@ Example of SQL:
 <span style='color:#800000; font-weight:bold; '>from</span> <span style='color:#800000; font-weight:bold; '>master</span><span style='color:#808030; '>.</span><span style='color:#808030; '>.</span>monOpenObjectActivity <span style='color:#800000; font-weight:bold; '>order</span> <span style='color:#800000; font-weight:bold; '>by</span> HkgcPending <span style='color:#800000; font-weight:bold; '>desc</span><span style='color:#808030; '>;</span>
 </pre>
 <br/>
+
+**Below is a list of configuration to consider for tuning**
+![my helpfull post]({{ site.url }}/assets/pictures/checkpoint_housekeeper_tuning_starting_points.png)
