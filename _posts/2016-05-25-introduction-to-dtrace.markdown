@@ -162,3 +162,27 @@ macro allows accessing variables defined outside Dtrace
 | $target | pid_t | process ID specified using -p PID or -c command	|
 | $1...$N | int or string | command-line args passed to Dtrace (1M) |
 | $$1...$$N |string (forced) | command-line args passed to Dtrace (1M)	|
+
+### Aggregations
+
+Aggregations variables are prefixed with `@`. As some CPUs/Threads may write to the same `global scalar` variable, aggregations prevent this as it will populate per CPUs/Threads buffers which are combined when printed.
+
+Aggregations may have keys
+
+`@a[pid] = count();` will count events separately per `pid`. The aggregations will be printed as a table with the `keys` on the left and the `value`  on the right
+
+![dtrace aggregating functions]({{ site.url }}/assets/pictures/dtrace_aggregating_functions.png)
+
+#### quantize
+
+`quantize` shows a graphical distribution of values with a frequency scale of pwer-two
+
+<pre style='color:#000000;background:#ffffff;'><span style='color:#808030; '>[</span><span style='color:#0000e6; '>root@pcbsd</span><span style='color:#808030; '>-</span><span style='color:#0000e6; '>simon</span><span style='color:#808030; '>]</span> ~<span style='color:#696969; '># dtrace -n 'callout_execute:::callout-start { self->cstart = timestamp; } callout_execute:::callout-end { @length = quantize(timestamp - self->cstart); }'</span>
+dtrace<span style='color:#808030; '>:</span> description <span style='color:#0000e6; '>'callout_execute:::callout-start '</span> matched <span style='color:#008c00; '>2</span> probes
+^C
+</pre>
+<br/>
+![dtrace quantize functions]({{ site.url }}/assets/pictures/dtrace_quantize.png)
+
+In this example, the most count (599) was for value between 8192 and 16383
+
