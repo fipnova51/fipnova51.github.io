@@ -158,7 +158,7 @@ macro allows accessing variables defined outside Dtrace
 
 
 |   var name   |   var types   |   description   |
-|   ---------------------  |   ---                        |   ---                   |
+|   ------------   |   -----------   |   ---------------   |
 | $target | pid_t | process ID specified using -p PID or -c command	|
 | $1...$N | int or string | command-line args passed to Dtrace (1M) |
 | $$1...$$N |string (forced) | command-line args passed to Dtrace (1M)	|
