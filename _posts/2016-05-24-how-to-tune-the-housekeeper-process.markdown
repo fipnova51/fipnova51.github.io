@@ -40,3 +40,7 @@ cache status = HK ignore cache
 ~~~
 Keep in mind that this setup must not be set for `logonly`, `relaxed` caches type nor on the `default data cache`.
 I good test would be to create a dedicated cache to the tempdb and set this parameter on it.
+
+**Below is a list of configuration to consider for tuning**
+
+![checkpoint and housekeeper]({{ site.url }}/assets/pictures/checkpoint_housekeeper_tuning_starting_point.png)
