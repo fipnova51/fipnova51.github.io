@@ -37,4 +37,4 @@ Example of SQL:
 
 **Below is a list of configuration to consider for tuning**
 
-![checkpoint and housekeeper](../assets/pictures/checkpoint_housekeeper_tuning_starting_points.png)
+![checkpoint and housekeeper](assets/pictures/checkpoint_housekeeper_tuning_starting_points.png)
