@@ -19,7 +19,7 @@ If we want an excluive lock on page 25, then 25%10 = 5 so we need to scan hash b
 
 The idea of tuning is to reduce the chain lenght for each bucket to less than 5. The information is available in sp_sysmon output
 
-!sp_sysmon [spinlock]({{ site.url }}/assets/pictures/sybase_sp_sysmon_spinlocks.png)
+![sp_sysmon spinlock]({{ site.url }}/assets/pictures/sybase_sp_sysmon_spinlocks.png)
 
 
 Sybase maintains two lock hashtable: one for table lock and one for page/row locks.
