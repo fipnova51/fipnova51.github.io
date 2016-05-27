@@ -40,3 +40,37 @@ Below is a description of the whole chain when modifying data
 
 ![transaction logs process]({{ site.url }}/assets/pictures/sybase_transaction_logs_process.png)
 
+#### Remarks about the log semaphore.
+
+Again, the flush to syslogs is done by getting the `log semaphore` on the `last log page`. If the `SPID` can't get it, it goes to sleep. The reason it can't get it is because another SPID has it and will write some log information in `syslogs` leading to a change of the `last log page`. The sleeping `SPID` is awake when the `log semaphore` is available.
+
+The example below shows the update of the last log page:
+
+~~~
+use demo_db
+go
+dbcc traceon(3604)
+go
+dbcc dbtable('demo_db')
+go
+.
+..
+...
+dbt_logsema=0000000003BAEE40
+dbt_nextseq=12   dbt_oldseq=12
+
+-- after deleting some rows
+
+dbcc dbtable('demo_db')
+go
+.
+..
+...
+dbt_logsema=0000000003BCEE40
+dbt_nextseq=5653   dbt_oldseq=5638
+~~~
+
+Here are some comments about the WaitEvent MDA tables
+
+![wait event for log semaphore]({{ site.url }}/assets/pictures/sybase_waitevent_logsemaphore.png)
+
