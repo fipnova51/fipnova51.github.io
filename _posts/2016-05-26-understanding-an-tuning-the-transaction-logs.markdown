@@ -74,3 +74,4 @@ Here are some comments about the WaitEvent MDA tables
 
 ![wait event for log semaphore]({{ site.url }}/assets/pictures/sybase_waitevent_logsemaphore.png)
 
+`WaitEventID 54` is clearly the event showing the SPID couldn't get the `log semaphore` because another is having it.
