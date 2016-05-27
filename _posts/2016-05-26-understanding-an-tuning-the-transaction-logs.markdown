@@ -1,0 +1,42 @@
+---
+published: true
+title: Understanding an tuning the transaction logs
+layout: post
+tags: [sybase, transaction, logs, syslogs]
+categories: [database]
+---
+*The transaction logs is a vital component and source of several bottlenecks. Understanding how it works can help you tune it for better performance*
+
+<!--excerpt-->
+
+### Who's using the transaction logs
+
+The transaction logs is used by:
+
+* The checkpoint process to know which pages to flush on disk
+* Post commit processing, it's scanned to know what data to change during a deferred inserts, updates or deletes
+* Sybase replication
+* Dump transaction
+* Rollback of large transactions if the data to be reverted are not in the ULC
+* Recovery from shutdown/crash
+
+### transaction space allocation
+
+Transaction logs is represented by `syslogs` table hosted on `segmap` of value 4. It's used in a circular way meaning that if your transactions logs is split on several segmap, once the current segmap is used, it'll continue to the next one and like this till then end of the last segmap before continuing to he beginning of the first segmap.
+
+### Log writes, the ULC and Log Cache
+
+Below is a description of the whole chain when modifying data
+
+1.  `SPID` grabs a spinlock on the spinlock protecting its `ULC` (`sp_configure 'user log cache spinlock ratio`)
+1. Modifed rows are written in the `ULC`
+1. When the `ULC` is full, a commit is reach or any reason, the `SPID` tries to get a lock on the `last log page` via the `log semaphone`last
+1. The log semaphore is granted, then the SPID needs to get spinlock on the cache the log is using
+1. Once both objects are taken, ULC is flushed to the last log page in the cache (with all flushing mechanism as a normal cache if no free pages)
+1. Once all pages are in cache, the process flushes the cache by issuing physical writes on each log page in sequence. The `last log page` may not be written to disk if not full tue to the `group commit sleep` implementation. Once the log pages are modified in the cache, the spinlock is released
+1. Once all pages are written to disk including the `last log page`, the transaction is considered committed, the `SPID` releases the `log semaphore` and continue with the next statement
+
+*Keep in mind that what is modified and written to disk are `log` information`. The actual data/index information modified are still in the cache and will be written to disk by the `checkpoint` or `housekeeper` process*
+
+![transaction logs process]({{ site.url }}/assets/pictures/sybase_transaction_logs_process.png)
+
