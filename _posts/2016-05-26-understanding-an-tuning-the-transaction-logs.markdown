@@ -75,3 +75,12 @@ Here are some comments about the WaitEvent MDA tables
 ![wait event for log semaphore]({{ site.url }}/assets/pictures/sybase_waitevent_logsemaphore.png)
 
 `WaitEventID 54` is clearly the event showing the SPID couldn't get the `log semaphore` because another is having it.
+
+### When does the write from log cache to syslogs happen?
+
+as we saw the picture above, the ULC is flushed in the `log cache` then written to disk but when does the flush really take place?
+To make it simple, the flush is done:
+
+* when the number of log pages equal to `log io size` is reached. Any SPID that filled the log cache are put to sleep until the write is initiated
+
+![commit sleep scenario 1]({{ site.url}}/assets/pictures/sybase_group_commit_sleep_scenario1.png)
