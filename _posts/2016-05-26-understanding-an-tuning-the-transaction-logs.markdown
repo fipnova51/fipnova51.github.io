@@ -84,3 +84,7 @@ To make it simple, the flush is done:
 * when the number of log pages equal to `log io size` is reached. Any SPID that filled the log cache are put to sleep until the write is initiated
 
 ![commit sleep scenario 1]({{ site.url}}/assets/pictures/sybase_group_commit_sleep_scenario1.png)
+
+* the number of log pages in the cache does not reach the `log io size` but the first `SPID` put to sleep reach the top of the run queue and no other process forced the log page to be written to disk
+
+![commit sleep scenario 2]({{ site.url}}/assets/pictures/sybase_group_commit_sleep_scenario2.png)
