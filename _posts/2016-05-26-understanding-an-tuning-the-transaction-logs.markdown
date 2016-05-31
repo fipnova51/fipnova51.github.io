@@ -131,3 +131,15 @@ Another to check whether or not the contention is there is to look at monSysWait
 <span style='color:#800000; font-weight:bold; '>where</span> T1<span style='color:#808030; '>.</span>SPID <span style='color:#800000; font-weight:bold; '>in</span> <span style='color:#808030; '>(</span><span style='color:#800000; font-weight:bold; '>select</span> spid <span style='color:#800000; font-weight:bold; '>from</span> <span style='color:#800000; font-weight:bold; '>master</span><span style='color:#808030; '>.</span><span style='color:#808030; '>.</span>sysprocesses <span style='color:#800000; font-weight:bold; '>where</span> dbid <span style='color:#800000; font-weight:bold; '>in</span> <span style='color:#808030; '>(</span><span style='color:#800000; font-weight:bold; '>select</span> dbid <span style='color:#800000; font-weight:bold; '>from</span> <span style='color:#800000; font-weight:bold; '>master</span><span style='color:#808030; '>.</span><span style='color:#808030; '>.</span>sysdatabases <span style='color:#800000; font-weight:bold; '>where</span> name <span style='color:#808030; '>=</span> <span style='color:#0000e6; '>'ENV0000121_20864313'</span><span style='color:#808030; '>)</span><span style='color:#808030; '>)</span><span style='color:#808030; '>;</span> <span style='color:#696969; '>-- get process Waits events</span>
 </pre>
 <br/>
+
+### User Log cache and Log IO Size
+
+First of all, few facts about the `ULC` and `log io size`.
+
+* ULC size should be at least the same size of `log io size`
+* Default `log io size` is 2 time the `page size` but  a buffer pool must be available otherwise the log will use the `page size` pool,
+* unless the transaction logs is binded to a dedicated cache, `default data cache` will be used
+
+#### sp_logiosize
+
+Defining the `log io size` is difficult. One way to measure it is to check the value for `Avg # Writes per Log Page` in `sp_sysmon` and trying to have the lowest value.
