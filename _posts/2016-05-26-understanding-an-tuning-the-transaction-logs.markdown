@@ -140,6 +140,18 @@ First of all, few facts about the `ULC` and `log io size`.
 * Default `log io size` is 2 time the `page size` but  a buffer pool must be available otherwise the log will use the `page size` pool,
 * unless the transaction logs is binded to a dedicated cache, `default data cache` will be used
 
-#### sp_logiosize
+#### sp_logiosize and ULC flush
 
 Defining the `log io size` is difficult. One way to measure it is to check the value for `Avg # Writes per Log Page` in `sp_sysmon` and trying to have the lowest value.
+
+Then the `ULC flush`. There are several reasons for the ULC to be flushed and those information are reported in `sp_sysmon` but as it reports systemwide metrics, those values must be correlated with monProcessActivity.ULC fields. Those values should also be checked with monProcessWaits to check whether there are some `log semaphore contention` because of the number of transactions.
+
+#### Session tempdb log cache
+
+Each session has a `ULC` and a `session tempdb log cache`, it's quite obscur how this tuning affect the performance but here are some sets of tuning that could be done
+* `session tempdb log cache` might be as big as the ULC
+* create a dedicated cache for tempd AND a dedicated cache for the tempdb `transaction logs`
+* the `log io size` for the tempdb should be 8 times `page size` meaning the tempdb cache should be configured with a 8 times `buffer pool`
+*tempdb database must have separated data and log and if possible on local disk
+
+You can review some interesting point about tuning the `temdb` [here](http://www.slideshare.net/SAPTechnology/ase-tempdb-performance-tuning).
