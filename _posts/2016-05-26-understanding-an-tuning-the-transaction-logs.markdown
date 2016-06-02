@@ -155,3 +155,38 @@ Each session has a `ULC` and a `session tempdb log cache`, it's quite obscur how
 *tempdb database must have separated data and log and if possible on local disk
 
 You can review some interesting point about tuning the `temdb` [here](http://www.slideshare.net/SAPTechnology/ase-tempdb-performance-tuning).
+
+### Transaction micro-batching / exploiting the ULC
+
+If you have a SPID doing a lot of individual insert and the `group commit sleep` is active, what would happen is the SPID will go to sleep for the `group commit sleep`, then as it will reach the head of the run-queue it's awake and the log is written to disk. Therefore every individual transactions is a write to disk.
+
+We need to avoid this by exploiting the ULC to hold enough log records to fill one or more log pages and flush them to the transaction logs in small batches but how:
+
+* using the `delayed commit` but this will be explained later
+*  using micro-batching
+
+**Be carefull, micro-batching may require to rewrite part of the application, especially the part doing the insert activity**
+
+Micro-batching is implemented by using the bulk API features of Sybase OpenClient orJConnect using the fully logged/transaction form of the bulk interface. To implement this is inva using JDBC you need the property `ENABLE_BULK_LOAD=true and `DYNAMIC_PREPARE=true` and then use the standard JDBC `preparedStatement()` and `addBatch()` methods.
+
+Last, **larget batch size improve the throughput but also increase the response time for the first row that was queued to be inserted**
+
+### Asynchronous Log Service
+
+TO be fully `ACID`, DBMS blocks `commits` to guarantee a committed transaction is on disk end recoverable. This means it's a synchronous operation.
+
+What happens when using `ALS`?
+
+![als diagram]({{ site.url }}/assets/pictures/sybase_als_diagram.png)
+
+The process is adding additional step but basically:
+
+1. When the `SPID's ULC` is to be flushed, it waits until it can get access to the `ALS` request queue for the `PLC flusher` and appends its request. Then is sleeps (WaitEventID=283) for the LogWriter to complete
+1. PLC flusher threads polls each database that enabled ALS looking for `log append requests`. This idle polling is WaitEventID=307
+1. When it gets a request, it grabs a ULC spinlock to prevent the SPID from making further changes to the ULC
+1. Then it grabs a log semaphore
+1. Then it grabs the cache spinlock
+1. The it flushes the ULC for the SPID
+1. The LogWriter thread is normally in a waiting (WaitEventID=308)
+1. The LogWriter writes the dirty log pages to disk (WaitEventID=309)
+
